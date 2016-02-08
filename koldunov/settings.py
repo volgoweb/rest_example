@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'koldunov',
     'koldunov.population',
+    'koldunov.product',
 ]
 
 MIDDLEWARE_CLASSES = [
