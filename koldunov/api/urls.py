@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import url
+from rest_framework import routers
 
 from .views.product_views import CategoryViewSet, ItemViewSet
 from .views.stat_views import StatViewSet
 
-urlpatterns = [
-    url(r'^category/', CategoryViewSet),
-    url(r'^item/', ItemViewSet),
-    url(r'^stat/', StatViewSet),
-]
+router = routers.SimpleRouter()
+router.register(r'category', CategoryViewSet)
+router.register(r'item', ItemViewSet)
+router.register(r'stat', StatViewSet)
+
+urlpatterns = router.urls

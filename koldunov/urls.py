@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+
+from koldunov.api.views.auth_views import Login
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^app/api/', include('api.urls')),
+    url(r'^app/auth/login/', Login.as_view(), name="login"),
+    url(r'^app/auth/login/', auth_views.logout, name="logout"),
+    url(r'^app/api/', include('koldunov.api.urls')),
 ]
