@@ -11,12 +11,16 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ItemSerializer(serializers.ModelSerializer):
     # categories = serializers.HyperlinkedRelatedField(many=True)
-    categories = serializers.SerializerMethodField()
+    categories = serializers.PrimaryKeyRelatedField(
+        many=True,
+        queryset=Category.objects.all(),
+    )
+    categories_objects = serializers.SerializerMethodField()
 
     class Meta:
         model = Item
 
-    def get_categories(self, obj):
+    def get_categories_objects(self, obj):
         json_list = []
         for cat in obj.categories.all():
             cat_ser = CategorySerializer(cat)
