@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
 
-from koldunov.population.models import Population
+from koldunov.stat.models import Population
 
 
 class StatSerializer(serializers.ModelSerializer):

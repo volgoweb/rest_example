@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     'koldunov',
-    'koldunov.population',
+    'koldunov.stat',
     'koldunov.product',
     'koldunov.api',
 ]

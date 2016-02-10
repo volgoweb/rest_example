@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from rest_framework import viewsets
 
-from koldunov.population.models import Population
+from koldunov.stat.models import Population
 from koldunov.api.serializers.stat_serializers import StatSerializer
 
 
