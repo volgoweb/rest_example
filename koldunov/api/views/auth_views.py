@@ -27,7 +27,7 @@ class Login(ObtainAuthToken):
 
 def logout(request):
     auth_logout(request)
-    response = HttpResponse(json.dumps({'status': 'Logged out'}))
+    response = HttpResponse(json.dumps({'detail': 'Logged out'}))
     response.delete_cookie('csrftoken')
     response.delete_cookie('sessionid')
     return response
