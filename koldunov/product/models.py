@@ -16,11 +16,23 @@ class Category(models.Model):
         return self.name
 
 
+class ItemQueryset(models.query.QuerySet):
+    def has_any_category(self, categories):
+        return self.filter(categories__in=categories)
+
+
+class ItemManager(models.Manager):
+    def get_queryset(self):
+        return ItemQueryset(self.model).all()
+
+
 class Item(models.Model):
     name = models.CharField(max_length=200, verbose_name=_('Name'))
-    categories = models.ManyToManyField('product.Category', verbose_name=_('Categories'))
+    categories = models.ManyToManyField('product.Category', verbose_name=_('Categories'), related_name='items_of_category')
     stock = models.SmallIntegerField(verbose_name=_('Stock'), blank=True, default=0)
     cost = models.FloatField(verbose_name=_('Cost'))
+
+    objects = ItemManager()
 
     class Meta:
         verbose_name = _('Item')

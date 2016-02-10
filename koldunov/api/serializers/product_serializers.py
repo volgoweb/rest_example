@@ -1,24 +1,24 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
 
-from koldunov.product.models import Category, Item
+from ...product import models
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Category
+        model = models.Category
 
 
 class ItemSerializer(serializers.ModelSerializer):
     # categories = serializers.HyperlinkedRelatedField(many=True)
     categories = serializers.PrimaryKeyRelatedField(
         many=True,
-        queryset=Category.objects.all(),
+        queryset=models.Category.objects.all(),
     )
     categories_objects = serializers.SerializerMethodField()
 
     class Meta:
-        model = Item
+        model = models.Item
 
     def get_categories_objects(self, obj):
         json_list = []
