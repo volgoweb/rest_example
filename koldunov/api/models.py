@@ -1,13 +1,21 @@
 # -*- coding: utf-8 -*-
 # TODO Move cache updating code to celery-task
-from django.db.models.signals import post_save, post_delete, m2m_changed
+from django.conf import settings
+from rest_framework.authtoken.models import Token
 from django.dispatch import receiver
+from django.db.models.signals import post_save, post_delete, m2m_changed
 
 from ..product.models import Category, Item
 from ..stat.models import Population
 from .cache import CacheCollection
 from .serializers.product_serializers import CategorySerializer, ItemSerializer
 from .serializers.stat_serializers import StatSerializer
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 
 
 def update_cache_simple(instance, serializer_class):
