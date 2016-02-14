@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, verbose_name=_('Name'))
+    name = models.CharField(max_length=100, verbose_name=_('Name'), db_index=True)
     description = models.TextField(verbose_name=_('Description'), null=True, blank=True)
 
     class Meta:
@@ -27,8 +27,9 @@ class ItemManager(models.Manager):
 
 
 class Item(models.Model):
-    name = models.CharField(max_length=200, verbose_name=_('Name'))
-    categories = models.ManyToManyField('product.Category', verbose_name=_('Categories'), related_name='items_of_category')
+    name = models.CharField(max_length=200, verbose_name=_('Name'), db_index=True)
+    categories = models.ManyToManyField('product.Category', verbose_name=_('Categories'),
+                                        related_name='items_of_category', db_index=True)
     stock = models.SmallIntegerField(verbose_name=_('Stock'), blank=True, default=0)
     cost = models.FloatField(verbose_name=_('Cost'))
 
