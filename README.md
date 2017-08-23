@@ -1,1 +1,1 @@
-django приложение, которое будет предоставлять REST интерфейс, обеспечивающий авторизацию, доступ к read-only данным, CRUD операции со связными моделями данных. В качестве REST библиотеки необходимо использовать django-rest-framework.
+Is an example of REST application with authorization, read-only access to several data and CRUD for models. App is based on django-rest-framework.
