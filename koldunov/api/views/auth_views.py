@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import json
-from django.middleware.csrf import _get_new_csrf_key
+from django.middleware.csrf import _get_new_csrf_string
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.http.response import HttpResponse
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -20,7 +20,7 @@ class Login(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         auth_login(request, user)
         response = Response({'token': token.key})
-        csrf_token = _get_new_csrf_key()
+        csrf_token = _get_new_csrf_string()
         response.set_cookie('csrftoken', csrf_token)
         return response
 

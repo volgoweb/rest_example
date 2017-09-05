@@ -1,3 +1,7 @@
-django==1.9.2
-djangorestframework==3.3.2
-django-redis==4.3.0
+Django==1.11.4
+djangorestframework==3.6.4
+httpie==0.9.9
+django-redis==4.8.0
+model-mommy==1.4.0
+django-extensions==1.9.0
+ipython==6.1.0
